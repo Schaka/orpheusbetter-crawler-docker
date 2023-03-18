@@ -9,5 +9,4 @@ WORKDIR /app
 RUN rm .git .gitignore -fR
 RUN pip3 install --user -r requirements.txt
 
-#ENTRYPOINT /bin/sh
-CMD /app/orpheusbetter
+ENTRYPOINT ["/bin/sh"]
