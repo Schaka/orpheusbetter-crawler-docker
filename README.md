@@ -11,6 +11,8 @@ the FLAC to each needed format, and upload each format to Orpheus -- automatical
 Please see the original repo for most of the docs.
 This one is focused on providing a Docker image of a working version, primarily for myself.
 
+Latest image (manual build) can be found here: https://hub.docker.com/r/schaka/orpheus-better
+
 Docker can be started with additional args, such as 
 `"/app/orpheusbetter --no-upload --threads 4"`
 
