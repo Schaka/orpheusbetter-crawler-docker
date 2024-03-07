@@ -12,7 +12,7 @@ Please see the original repo for most of the docs.
 This one is focused on providing a Docker image of a working version, primarily for myself.
 
 Docker can be started with additional args, such as 
-`/app/orpheusbetter --no-upload --threads 4`
+`"/app/orpheusbetter --no-upload --threads 4"`
 
 Example from Unraid
 
@@ -28,7 +28,5 @@ docker run
   -l net.unraid.docker.managed=dockerman
   -v '/mnt/user/appdata/orpheus-better':'/config':'rw'
   -v '/mnt/user/share_media':'/data':'rw'
-  -v '/mnt/user/appdata/qbittorrent-semi-private/qBittorrent/BT_backup/':'/torrent':'rw' 'schaka/orpheus-better' /app/orpheusbetter
-  --no-upload
-  --threads 4
+  -v '/mnt/user/appdata/qbittorrent-semi-private/qBittorrent/BT_backup/':'/torrent':'rw' 'schaka/orpheus-better' "/app/orpheusbetter --no-upload --threads 4"
 ```
