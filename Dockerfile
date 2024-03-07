@@ -1,20 +1,22 @@
 # syntax=docker/dockerfile:1
-FROM python:3.8.18-alpine3.19
+FROM python:3.8-alpine3.18
 
 WORKDIR /
 
-RUN groupadd -g 1000 orpheus && useradd -u 1000 -g orpheus -d /config orpheus && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends git mktorrent flac lame sox && \
+RUN addgroup -g 1000 orpheus && adduser -u 1000 -D -G orpheus -h /config orpheus && \
+    apk update && \
+    apk add git mktorrent flac lame sox && \
     git clone https://github.com/Schaka/orpheusbetter-crawler-docker
 
-RUN apk update
-RUN apk add py3-pip mktorrent flac lame sox
-
+WORKDIR /orpheusbetter-crawler-docker
 COPY . /app
 WORKDIR /app
-RUN rm .git .gitignore -fR
-RUN pip3 install --user -r requirements.txt && \
-    chown -R orpheus:orpheus ./
+RUN rm -r /orpheusbetter-crawler-docker && \
+    chown -R orpheus:orpheus /app
 
-ENTRYPOINT ["/bin/bash"]
+
+ENV PATH="$PATH:/root/.local/bin"
+RUN pip install -r requirements.txt
+USER orpheus
+
+ENTRYPOINT ["/bin/sh", "-c"]
